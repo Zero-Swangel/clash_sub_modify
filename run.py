@@ -4,7 +4,11 @@ spilt_list = []
 filtered_string = ''
 origin_string = ''
 
-with open('/Users/walker/.config/clash/火星聯盟-學習交流.yaml', 'r') as f: 
+subscribe_path = '/Users/walker/.config/clash/火星聯盟-學習交流.yaml'
+template_path = '/Users/walker/.config/clash/火星联盟-模板.yaml'
+save_path = '/Users/walker/.config/clash/火星联盟.yaml'
+
+with open(subscribe_path, 'r') as f: 
     file_string = f.read()
     file_string = file_string[file_string.find('proxies:')+9:file_string.find('proxy-groups:')]
 
@@ -31,12 +35,12 @@ proxy_groups = proxy_groups + "- { name: Auto, type: url-test, proxies: [" + ori
 proxy_groups = proxy_groups + "- { name: Auto-Medias, type: url-test, proxies: [" + filtered_string + "], url: 'http://fast.com/', interval: 86400 }\n    "
 proxy_groups = proxy_groups + "- { name: Fallback, type: fallback, proxies: [" + origin_string + "], url: 'https://www.google.com/', interval: 7200 }\n"
 
-with open('/Users/walker/.config/clash/火星联盟-模板.yaml', 'r') as f: 
+with open(template_path, 'r') as f: 
     file_string = f.read()
     fore = file_string[:file_string.find('proxies:')]
     back = '\n' + file_string[file_string.find('rules:'):]
 
 new_file = fore + proxies + proxy_groups + back
 
-with open('/Users/walker/.config/clash/火星联盟.yaml', 'w') as f: 
+with open(save_path, 'w') as f: 
     f.write(new_file)
