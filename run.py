@@ -1,11 +1,12 @@
 # -*- coding: UTF-8 -*-
+import os
 
 spilt_list = []
 filtered_string = ''
 origin_string = ''
 
 subscribe_path = '/Users/walker/.config/clash/火星联盟.yaml'
-template_path = '/Users/walker/.config/clash/template.yaml'
+template_path = os.getcwd()+'/template.yaml'
 save_path = '/Users/walker/.config/clash/hxlm.yaml'
 
 with open(subscribe_path, 'r') as f: 
